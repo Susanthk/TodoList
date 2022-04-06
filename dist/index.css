@@ -1,0 +1,41 @@
+.heading {
+  font-size: 3em;
+  display: block;
+  text-align: center;
+  border: solid;
+}
+
+.navDiv {
+  border: solid;
+}
+
+ul {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+button {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+.navTaskWindow {
+  display: grid;
+  grid-template-columns: 15% auto;
+  height: 500px;
+}
+
+li {
+  margin: 5% auto;
+}
+li:hover {
+  border: solid;
+}
+
+.taskWindow {
+  border: solid;
+}
