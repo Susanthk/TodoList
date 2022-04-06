@@ -1,8 +1,14 @@
 
+function addTask(){
+    let inputDiv = document.createElement("div")
+    inputDiv.classList.add("inputDiv")
+
+    let taskInput = document.createElement("input")
+    let taskDate = document.createElement("input")
+}
 
 
 function createTodayTaskWindow(){
-
     let taskWindow = document.createElement("div")
     taskWindow.classList.add("taskWindow")
     taskWindow.setAttribute("id", "todayWindow")
