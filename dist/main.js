@@ -10,63 +10,83 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./modules/header.js":
-/*!***************************!*\
-  !*** ./modules/header.js ***!
-  \***************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n\nfunction createHeader(){\n    let header = document.createElement(\"header\")\n    header.classList.add(\"heading\")\n    header.innerText = \"Todo List\" \n    return header \n}\n\nfunction setHeader(){\n    let doc = document.querySelector(\".work\")\n    let header = createHeader()\n    doc.appendChild(header) \n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (setHeader);\n\n//# sourceURL=webpack://todolist/./modules/header.js?");
-
-/***/ }),
-
-/***/ "./modules/navbar.js":
-/*!***************************!*\
-  !*** ./modules/navbar.js ***!
-  \***************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n\n\n\nfunction createNavBar(){\n\n    let navTaskWindow = document.createElement(\"div\")\n    navTaskWindow.classList.add(\"navTaskWindow\")\n\n    let navDiv = document.createElement(\"div\")\n    navDiv.classList.add(\"navDiv\")\n\n    const elements = [\"Today\", \"Tomorrow\", \"NextWeek\"]\n    let list = document.createElement(\"ul\")\n    \n    elements.forEach((element) => {\n        let li = document.createElement(\"li\")\n        let button = document.createElement(\"button\")\n        button.setAttribute(\"id\", element.toLowerCase())\n        button.innerText = element\n        li.appendChild(button)\n        list.appendChild(li)\n    })\n\n    navDiv.appendChild(list)\n\n    navTaskWindow.appendChild(navDiv)\n    return navTaskWindow\n}\n\n\nfunction setNavBar(){\n\n    let content = document.querySelector(\"#content\")\n    let navBar = createNavBar()\n\n    content.appendChild(navBar)\n    return content\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (setNavBar);\n\n//# sourceURL=webpack://todolist/./modules/navbar.js?");
-
-/***/ }),
-
-/***/ "./modules/taskWindows/nextWeekTaskWindow.js":
-/*!***************************************************!*\
-  !*** ./modules/taskWindows/nextWeekTaskWindow.js ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction createNextWeekTaskWindow(){\n\n    let taskWindow = document.createElement(\"div\")\n    taskWindow.classList.add(\"taskWindow\")\n    taskWindow.setAttribute(\"id\", \"nextWeekWindow\")\n    taskWindow.innerText = \"Next Week\"\n    \n    return taskWindow\n}\n\nfunction removeCurrentWindows(window){\n    let child = document.querySelectorAll(\".taskWindow\")\n    for (let i = 0; i < child.length; i++){\n        console.log(child[i].classList)\n        window.removeChild(child[i])\n    }\n   \n}\n\nfunction setNextWeekTaskWindow(){\n    let window = document.querySelector(\".navTaskWindow\")\n    console.log(\"Next Week\")\n    removeCurrentWindows(window)\n   \n    let taskWindow = createNextWeekTaskWindow()\n\n    window.appendChild(taskWindow)\n    return window\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (setNextWeekTaskWindow);\n\n//# sourceURL=webpack://todolist/./modules/taskWindows/nextWeekTaskWindow.js?");
-
-/***/ }),
-
-/***/ "./modules/taskWindows/todayTaskWindow.js":
-/*!************************************************!*\
-  !*** ./modules/taskWindows/todayTaskWindow.js ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n\nfunction addTask(){\n    let inputDiv = document.createElement(\"div\")\n    inputDiv.classList.add(\"inputDiv\")\n\n    let taskInput = document.createElement(\"input\")\n    let taskDate = document.createElement(\"input\")\n}\n\n\nfunction createTodayTaskWindow(){\n    let taskWindow = document.createElement(\"div\")\n    taskWindow.classList.add(\"taskWindow\")\n    taskWindow.setAttribute(\"id\", \"todayWindow\")\n    taskWindow.innerText = \"Today\"\n    \n    return taskWindow\n}\n\nfunction removeCurrentWindows(window){\n    let child = document.querySelectorAll(\".taskWindow\")\n    for (let i = 0; i < child.length; i++){\n        console.log(child[i].classList)\n        window.removeChild(child[i])\n    }\n   \n}\n\nfunction setTodayTaskWindow(){\n    let window = document.querySelector(\".navTaskWindow\")\n    console.log(\"today\")\n    removeCurrentWindows(window)\n   \n    let taskWindow = createTodayTaskWindow()\n\n    window.appendChild(taskWindow)\n    return window\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (setTodayTaskWindow);\n\n//# sourceURL=webpack://todolist/./modules/taskWindows/todayTaskWindow.js?");
-
-/***/ }),
-
-/***/ "./modules/taskWindows/tomorrowTaskWindow.js":
-/*!***************************************************!*\
-  !*** ./modules/taskWindows/tomorrowTaskWindow.js ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction createTomorrowTaskWindow(){\n\n    let taskWindow = document.createElement(\"div\")\n    taskWindow.classList.add(\"taskWindow\")\n    taskWindow.setAttribute(\"id\", \"tomorrowWindow\")\n    taskWindow.innerText = \"Tomorrow\"\n    \n    return taskWindow\n}\n\nfunction removeCurrentWindows(window){\n    let child = document.querySelectorAll(\".taskWindow\")\n    for (let i = 0; i < child.length; i++){\n        console.log(child[i].classList)\n        window.removeChild(child[i])\n    }\n   \n}\n\nfunction setTomorrowTaskWindow(){\n    let window = document.querySelector(\".navTaskWindow\")\n    console.log(\"tomorrow\")\n    removeCurrentWindows(window)\n   \n    let taskWindow = createTomorrowTaskWindow()\n\n    window.appendChild(taskWindow)\n    return window\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (setTomorrowTaskWindow);\n\n//# sourceURL=webpack://todolist/./modules/taskWindows/tomorrowTaskWindow.js?");
-
-/***/ }),
-
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_header_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/header.js */ \"./modules/header.js\");\n/* harmony import */ var _modules_navbar_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modules/navbar.js */ \"./modules/navbar.js\");\n/* harmony import */ var _modules_taskWindows_todayTaskWindow_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../modules/taskWindows/todayTaskWindow.js */ \"./modules/taskWindows/todayTaskWindow.js\");\n/* harmony import */ var _modules_taskWindows_tomorrowTaskWindow_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../modules/taskWindows/tomorrowTaskWindow.js */ \"./modules/taskWindows/tomorrowTaskWindow.js\");\n/* harmony import */ var _modules_taskWindows_nextWeekTaskWindow_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../modules/taskWindows/nextWeekTaskWindow.js */ \"./modules/taskWindows/nextWeekTaskWindow.js\");\n\n\n\n\n\n\n\nfunction navBar(){\n\n    let todayTask = document.querySelector(\"#today\")\n    todayTask.addEventListener(\"click\", _modules_taskWindows_todayTaskWindow_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])\n\n    let tomorrowTask = document.querySelector(\"#tomorrow\")\n    tomorrowTask.addEventListener(\"click\", _modules_taskWindows_tomorrowTaskWindow_js__WEBPACK_IMPORTED_MODULE_3__[\"default\"])\n\n    let nextWeekTask = document.querySelector(\"#nextweek\")\n    nextWeekTask.addEventListener(\"click\", _modules_taskWindows_nextWeekTaskWindow_js__WEBPACK_IMPORTED_MODULE_4__[\"default\"])\n}\n\n\n(0,_modules_header_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])()\n;(0,_modules_navbar_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])()\nnavBar()\n//setTomorrowTaskWindow()\n;(0,_modules_taskWindows_todayTaskWindow_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])()\n\n\n\n//# sourceURL=webpack://todolist/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_UImodule_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/UImodule.js */ \"./src/modules/UImodule.js\");\n\n\ndocument.addEventListener('DOMContentLoaded', _modules_UImodule_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].loadHomepage)\n\n\n//# sourceURL=webpack://todolist/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/Project.js":
+/*!********************************!*\
+  !*** ./src/modules/Project.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Project)\n/* harmony export */ });\nclass Project{\n    constructor (name){\n        this.name = name\n        this.tasks = []\n    }\n}\n\n//# sourceURL=webpack://todolist/./src/modules/Project.js?");
+
+/***/ }),
+
+/***/ "./src/modules/Task.js":
+/*!*****************************!*\
+  !*** ./src/modules/Task.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Task)\n/* harmony export */ });\nclass Task{\n    constructor(name, dueDate = \"\"){\n        this.name = name\n        this.dueDate = dueDate\n    }\n}\n\n//# sourceURL=webpack://todolist/./src/modules/Task.js?");
+
+/***/ }),
+
+/***/ "./src/modules/UImodule.js":
+/*!*********************************!*\
+  !*** ./src/modules/UImodule.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ UI)\n/* harmony export */ });\n/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ \"./src/modules/storage.js\");\n/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project */ \"./src/modules/project.js\");\n/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./task */ \"./src/modules/task.js\");\n/* harmony import */ var _todoList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./todoList */ \"./src/modules/todoList.js\");\n//import setHeader from \"./header.js\";\n//import setNavBar from \"../modules/navbar.js\"\n//import setTodayTaskWindow from \"../modules/modules/todayTaskWindow.js\"\n\n\n\n\n\nclass UI {\n\n    static loadHomepage(){\n       //UI.setProjects()\n       UI.setHeader()\n       UI.saveTodoList()\n       UI.displayProjects()\n    }\n\n\n    static setHeader(){\n        let header = document.createElement(\"header\")\n        let doc = document.querySelector(\".work\")\n        header.classList.add(\"heading\")\n        header.innerText = \"Todo List\" \n        doc.appendChild(header) \n    }\n\n    static displayProjects(){\n        let todolist = _storage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getTodoList()\n        console.log(todolist)\n    }\n\n    static saveTodoList(){\n        let todolist = new _todoList__WEBPACK_IMPORTED_MODULE_3__[\"default\"]()\n        _storage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].saveTodoList(todolist)\n    }\n\n    \n}\n\n//# sourceURL=webpack://todolist/./src/modules/UImodule.js?");
+
+/***/ }),
+
+/***/ "./src/modules/project.js":
+/*!********************************!*\
+  !*** ./src/modules/project.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Project)\n/* harmony export */ });\nclass Project{\n    constructor (name){\n        this.name = name\n        this.tasks = []\n    }\n}\n\n//# sourceURL=webpack://todolist/./src/modules/project.js?");
+
+/***/ }),
+
+/***/ "./src/modules/storage.js":
+/*!********************************!*\
+  !*** ./src/modules/storage.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Storage)\n/* harmony export */ });\n/* harmony import */ var _Project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Project */ \"./src/modules/Project.js\");\n/* harmony import */ var _Task__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Task */ \"./src/modules/Task.js\");\n/* harmony import */ var _todoList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./todoList */ \"./src/modules/todoList.js\");\n\n\n\n\nclass Storage{\n    \n    static saveTodoList(data){\n        console.log(data)\n        localStorage.setItem('todoList', JSON.stringify(data))\n        console.log(localStorage)\n    }\n\n    static getTodoList() {\n        //console.log(localStorage.getItem('todoList'))\n        const todoList = Object.assign(\n        new _todoList__WEBPACK_IMPORTED_MODULE_2__[\"default\"](),\n        JSON.parse(localStorage.getItem('todoList'))\n        )\n        console.log(todoList)\n        todoList.setProjects(\n        todoList\n            .getProjects()\n            .map((project) => Object.assign(new _Project__WEBPACK_IMPORTED_MODULE_0__[\"default\"](), project))\n        )\n/*\n        todoList\n        .getProjects()\n        .forEach((project) =>\n            project.setTasks(\n            project.getTasks().map((task) => Object.assign(new Task(), task))\n            )\n        )\n    */\n\n    return todoList\n  }\n}\n\n//# sourceURL=webpack://todolist/./src/modules/storage.js?");
+
+/***/ }),
+
+/***/ "./src/modules/task.js":
+/*!*****************************!*\
+  !*** ./src/modules/task.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Task)\n/* harmony export */ });\nclass Task{\n    constructor(name, dueDate = \"\"){\n        this.name = name\n        this.dueDate = dueDate\n    }\n}\n\n//# sourceURL=webpack://todolist/./src/modules/task.js?");
+
+/***/ }),
+
+/***/ "./src/modules/todoList.js":
+/*!*********************************!*\
+  !*** ./src/modules/todoList.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ TodoList)\n/* harmony export */ });\nclass TodoList{\n    constructor(){\n        this.projects = []\n        this.projects.push(\"Today\")\n        this.projects.push(\"Tomorrow\")\n        this.projects.push(\"This Week\")\n    }\n\n    setProjects(projects){\n        this.projects = projects\n    }\n    \n    getProjects(){\n        return this.project\n    }\n}\n\n//# sourceURL=webpack://todolist/./src/modules/todoList.js?");
 
 /***/ })
 
