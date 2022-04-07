@@ -20,23 +20,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
 
 /***/ }),
 
-/***/ "./src/modules/Project.js":
+/***/ "./src/modules/Storage.js":
 /*!********************************!*\
-  !*** ./src/modules/Project.js ***!
+  !*** ./src/modules/Storage.js ***!
   \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Project)\n/* harmony export */ });\nclass Project{\n    constructor (name){\n        this.name = name\n        this.tasks = []\n    }\n}\n\n//# sourceURL=webpack://todolist/./src/modules/Project.js?");
-
-/***/ }),
-
-/***/ "./src/modules/Task.js":
-/*!*****************************!*\
-  !*** ./src/modules/Task.js ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Task)\n/* harmony export */ });\nclass Task{\n    constructor(name, dueDate = \"\"){\n        this.name = name\n        this.dueDate = dueDate\n    }\n}\n\n//# sourceURL=webpack://todolist/./src/modules/Task.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Storage)\n/* harmony export */ });\nclass Storage{\n\n\n    static saveProjects(data){\n        localStorage.setItem('TodoList', JSON.stringify(data))\n    }\n\n    static getProjects(){\n        return JSON.parse(localStorage.getItem('TodoList'))\n    }\n\n}\n\n//# sourceURL=webpack://todolist/./src/modules/Storage.js?");
 
 /***/ }),
 
@@ -46,37 +36,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ UI)\n/* harmony export */ });\n/* harmony import */ var _storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./storage */ \"./src/modules/storage.js\");\n/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project */ \"./src/modules/project.js\");\n/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./task */ \"./src/modules/task.js\");\n/* harmony import */ var _todoList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./todoList */ \"./src/modules/todoList.js\");\n//import setHeader from \"./header.js\";\n//import setNavBar from \"../modules/navbar.js\"\n//import setTodayTaskWindow from \"../modules/modules/todayTaskWindow.js\"\n\n\n\n\n\nclass UI {\n\n    static loadHomepage(){\n       //UI.setProjects()\n       UI.setHeader()\n       UI.saveTodoList()\n       UI.displayProjects()\n    }\n\n\n    static setHeader(){\n        let header = document.createElement(\"header\")\n        let doc = document.querySelector(\".work\")\n        header.classList.add(\"heading\")\n        header.innerText = \"Todo List\" \n        doc.appendChild(header) \n    }\n\n    static displayProjects(){\n        let todolist = _storage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getTodoList()\n        console.log(todolist)\n    }\n\n    static saveTodoList(){\n        let todolist = new _todoList__WEBPACK_IMPORTED_MODULE_3__[\"default\"]()\n        _storage__WEBPACK_IMPORTED_MODULE_0__[\"default\"].saveTodoList(todolist)\n    }\n\n    \n}\n\n//# sourceURL=webpack://todolist/./src/modules/UImodule.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ UI)\n/* harmony export */ });\n/* harmony import */ var _projects_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./projects.js */ \"./src/modules/projects.js\");\n/* harmony import */ var _todoList_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./todoList.js */ \"./src/modules/todoList.js\");\n/* harmony import */ var _Storage_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Storage.js */ \"./src/modules/Storage.js\");\n\n\n\n\n\nlet content = document.getElementById(\"content\")\nconst todoList = new _todoList_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\n\nclass UI {\n\n    static loadHomepage(){\n        UI.createHeader()\n        UI.setUpProjects()\n        UI.presentProjects()\n    }\n\n    static createProjectList(project){\n        let projectList = document.createElement(\"li\")\n        let projectButton = document.createElement(\"button\")\n        projectButton.innerText = project.name\n        projectButton.classList.add(\"projectButton\")\n        projectList.appendChild(projectButton)\n        return projectList\n    }\n\n    static presentProjects(){\n        \n        let projects = _Storage_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"].getProjects()\n       \n        var navBar = document.createElement(\"div\")\n        navBar.setAttribute(\"id\", \"navBar\")\n        var projectList = document.createElement(\"ul\")\n        projectList.setAttribute(\"id\", \"projectList\")\n        projects.forEach(element => {\n            projectList.appendChild(UI.createProjectList(element))\n        });\n\n        content.appendChild(projectList)\n    }\n\n    static setUpProjects(){\n\n        let todayProject = new _projects_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"](\"Today\")\n        let tomorrowProject = new _projects_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"](\"Tomorrow\")\n        let weekProject = new _projects_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"](\"This Week\")\n     \n        todoList.addProject(todayProject)\n        todoList.addProject(tomorrowProject)\n        todoList.addProject(weekProject)\n      \n        todoList.saveProjects()\n    }\n\n\n    static createHeader(){\n        \n        let header = document.createElement(\"h1\")\n        header.innerText = \"Todo List\"\n        header.setAttribute(\"id\", \"header\")\n        content.appendChild(header)\n    }\n\n\n}\n\n//# sourceURL=webpack://todolist/./src/modules/UImodule.js?");
 
 /***/ }),
 
-/***/ "./src/modules/project.js":
-/*!********************************!*\
-  !*** ./src/modules/project.js ***!
-  \********************************/
+/***/ "./src/modules/projects.js":
+/*!*********************************!*\
+  !*** ./src/modules/projects.js ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Project)\n/* harmony export */ });\nclass Project{\n    constructor (name){\n        this.name = name\n        this.tasks = []\n    }\n}\n\n//# sourceURL=webpack://todolist/./src/modules/project.js?");
-
-/***/ }),
-
-/***/ "./src/modules/storage.js":
-/*!********************************!*\
-  !*** ./src/modules/storage.js ***!
-  \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Storage)\n/* harmony export */ });\n/* harmony import */ var _Project__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Project */ \"./src/modules/Project.js\");\n/* harmony import */ var _Task__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Task */ \"./src/modules/Task.js\");\n/* harmony import */ var _todoList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./todoList */ \"./src/modules/todoList.js\");\n\n\n\n\nclass Storage{\n    \n    static saveTodoList(data){\n        console.log(data)\n        localStorage.setItem('todoList', JSON.stringify(data))\n        console.log(localStorage)\n    }\n\n    static getTodoList() {\n        //console.log(localStorage.getItem('todoList'))\n        const todoList = Object.assign(\n        new _todoList__WEBPACK_IMPORTED_MODULE_2__[\"default\"](),\n        JSON.parse(localStorage.getItem('todoList'))\n        )\n        console.log(todoList)\n        todoList.setProjects(\n        todoList\n            .getProjects()\n            .map((project) => Object.assign(new _Project__WEBPACK_IMPORTED_MODULE_0__[\"default\"](), project))\n        )\n/*\n        todoList\n        .getProjects()\n        .forEach((project) =>\n            project.setTasks(\n            project.getTasks().map((task) => Object.assign(new Task(), task))\n            )\n        )\n    */\n\n    return todoList\n  }\n}\n\n//# sourceURL=webpack://todolist/./src/modules/storage.js?");
-
-/***/ }),
-
-/***/ "./src/modules/task.js":
-/*!*****************************!*\
-  !*** ./src/modules/task.js ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Task)\n/* harmony export */ });\nclass Task{\n    constructor(name, dueDate = \"\"){\n        this.name = name\n        this.dueDate = dueDate\n    }\n}\n\n//# sourceURL=webpack://todolist/./src/modules/task.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Project)\n/* harmony export */ });\nclass Project{\n    constructor(name){\n        this.name = name;\n        this.tasks = []\n    }\n\n    addtask(task){\n        this.tasks.push(task)\n    }\n\n    \n}\n\n//# sourceURL=webpack://todolist/./src/modules/projects.js?");
 
 /***/ }),
 
@@ -86,7 +56,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ TodoList)\n/* harmony export */ });\nclass TodoList{\n    constructor(){\n        this.projects = []\n        this.projects.push(\"Today\")\n        this.projects.push(\"Tomorrow\")\n        this.projects.push(\"This Week\")\n    }\n\n    setProjects(projects){\n        this.projects = projects\n    }\n    \n    getProjects(){\n        return this.project\n    }\n}\n\n//# sourceURL=webpack://todolist/./src/modules/todoList.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ TodoList)\n/* harmony export */ });\n/* harmony import */ var _Storage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Storage.js */ \"./src/modules/Storage.js\");\n\n\nclass TodoList{\n\n    constructor(){\n        this.projects = []\n    }\n\n    addProject(project){\n        this.projects.push(project)\n    }\n\n    saveProjects(){\n        _Storage_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"].saveProjects(this.projects)\n    }\n\n\n\n}\n\n//# sourceURL=webpack://todolist/./src/modules/todoList.js?");
 
 /***/ })
 

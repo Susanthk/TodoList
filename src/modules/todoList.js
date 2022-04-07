@@ -1,16 +1,19 @@
+import Storage from "./Storage.js"
+
 export default class TodoList{
+
     constructor(){
         this.projects = []
-        this.projects.push("Today")
-        this.projects.push("Tomorrow")
-        this.projects.push("This Week")
     }
 
-    setProjects(projects){
-        this.projects = projects
+    addProject(project){
+        this.projects.push(project)
     }
-    
-    getProjects(){
-        return this.project
+
+    saveProjects(){
+        Storage.saveProjects(this.projects)
     }
+
+
+
 }

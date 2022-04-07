@@ -1,38 +1,64 @@
-//import setHeader from "./header.js";
-//import setNavBar from "../modules/navbar.js"
-//import setTodayTaskWindow from "../modules/modules/todayTaskWindow.js"
-import Storage from './storage'
-import Project from './project'
-import Task from './task'
-import TodoList from './todoList'
+import Project from "./projects.js"
+import TodoList from "./todoList.js"
+import Storage from "./Storage.js"
+
+
+let content = document.getElementById("content")
+const todoList = new TodoList();
 
 export default class UI {
 
     static loadHomepage(){
-       //UI.setProjects()
-       UI.setHeader()
-       UI.saveTodoList()
-       UI.displayProjects()
+        UI.createHeader()
+        UI.setUpProjects()
+        UI.presentProjects()
+    }
+
+    static createProjectList(project){
+        let projectList = document.createElement("li")
+        let projectButton = document.createElement("button")
+        projectButton.innerText = project.name
+        projectButton.classList.add("projectButton")
+        projectList.appendChild(projectButton)
+        return projectList
+    }
+
+    static presentProjects(){
+        
+        let projects = Storage.getProjects()
+       
+        var navBar = document.createElement("div")
+        navBar.setAttribute("id", "navBar")
+        var projectList = document.createElement("ul")
+        projectList.setAttribute("id", "projectList")
+        projects.forEach(element => {
+            projectList.appendChild(UI.createProjectList(element))
+        });
+
+        content.appendChild(projectList)
+    }
+
+    static setUpProjects(){
+
+        let todayProject = new Project("Today")
+        let tomorrowProject = new Project("Tomorrow")
+        let weekProject = new Project("This Week")
+     
+        todoList.addProject(todayProject)
+        todoList.addProject(tomorrowProject)
+        todoList.addProject(weekProject)
+      
+        todoList.saveProjects()
     }
 
 
-    static setHeader(){
-        let header = document.createElement("header")
-        let doc = document.querySelector(".work")
-        header.classList.add("heading")
-        header.innerText = "Todo List" 
-        doc.appendChild(header) 
+    static createHeader(){
+        
+        let header = document.createElement("h1")
+        header.innerText = "Todo List"
+        header.setAttribute("id", "header")
+        content.appendChild(header)
     }
 
-    static displayProjects(){
-        let todolist = Storage.getTodoList()
-        console.log(todolist)
-    }
 
-    static saveTodoList(){
-        let todolist = new TodoList()
-        Storage.saveTodoList(todolist)
-    }
-
-    
 }
