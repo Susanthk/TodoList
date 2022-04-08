@@ -22,3 +22,30 @@
   overflow: hidden;
   outline: none;
 }
+
+#navBar {
+  border: solid;
+  float: left;
+  width: 200px;
+  height: 800px;
+}
+
+.project {
+  margin: 20px;
+}
+
+.projectButton {
+  font-size: 1.15em;
+}
+
+.projectButton:hover {
+  background-color: gray;
+  opacity: 0.9;
+}
+
+#taskWindow {
+  float: left;
+  width: 1234px;
+  height: 800px;
+  border: solid red;
+}

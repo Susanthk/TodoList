@@ -4,8 +4,22 @@ export default class Project{
         this.tasks = []
     }
 
-    addtask(task){
+   
+    addTask(task){
         this.tasks.push(task)
+    }
+
+    setTasks(task){
+        this.tasks = task;
+    }
+
+    
+    getTasks(){
+        return this.tasks
+    }
+
+    getName(){
+        return this.name
     }
 
     
