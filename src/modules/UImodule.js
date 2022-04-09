@@ -21,7 +21,7 @@ export default class UI {
         //UI.setUpProjects()
         UI.createStaticElements()
         UI.createStandardProjectWindow()
-        
+        UI.createUserProjectWindow()
         
     }
 
@@ -300,7 +300,7 @@ export default class UI {
         if (projects.length > 0 ){
             
             let projectsList = document.createElement("ul")
-            for (let i = 0; i < projects.length; i++){
+            for (let i = 0; i < 3; i++){
                 let project = document.createElement("li")
                 let button = document.createElement("button")
                 button.innerText = projects[i].name
