@@ -13,7 +13,12 @@ export default class UI {
 
 
     static loadHomepage(){
-        UI.setUpProjects()
+        let content = Storage.getProjects()
+        console.log(content)
+        if (content.length == 0){
+             UI.setUpProjects()
+        }
+        //UI.setUpProjects()
         UI.createStaticElements()
         UI.createStandardProjectWindow()
         
@@ -282,9 +287,6 @@ export default class UI {
     }
     static deleteProject(project){
         let taskDisplay = document.querySelector("#taskDisplay")
-        
-        
-        
         Storage.deleteProject(project)
         UI.createUserProjectWindow()
     }
