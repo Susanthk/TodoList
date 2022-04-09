@@ -1,5 +1,6 @@
 export default class Task{
-    constructor(details = "unknown" ){
+    constructor(id = null, details = "unknown" ){
+        this.id = id
         this.details = details
     }
 }

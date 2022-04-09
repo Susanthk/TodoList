@@ -2,50 +2,38 @@
   margin: 0;
 }
 
+#content {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
 #header {
   text-align: center;
 
   border-bottom: solid;
-  height: 50px;
+  height: 8%;
 }
 
-#projectList {
-  text-decoration: none;
-  list-style-type: none;
+#contentWindow {
+  height: 92%;
+  display: grid;
+  grid-template-columns: 15% 85%;
 }
 
-.projectButton {
-  background-color: transparent;
-  background-repeat: no-repeat;
-  border: none;
-  cursor: pointer;
-  overflow: hidden;
-  outline: none;
-}
-
-#navBar {
+#projectWindow {
   border: solid;
-  float: left;
-  width: 200px;
-  height: 800px;
 }
-
-.project {
-  margin: 20px;
-}
-
-.projectButton {
-  font-size: 1.15em;
-}
-
-.projectButton:hover {
-  background-color: gray;
-  opacity: 0.9;
-}
-
 #taskWindow {
-  float: left;
-  width: 1234px;
-  height: 800px;
-  border: solid red;
+  border: solid;
+}
+
+ul {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+  display: flex;
+  border: solid;
 }

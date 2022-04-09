@@ -13,19 +13,28 @@ export default class Storage{
     }
 
     static getProject(projectName){
-        let projects = Storage.getProjects()
-        let currProject = projects.find(project => (project.name == projectName))
+        let todoList = Storage.getProjects()
+        //console.log("projects", projects)
+        let currProject = todoList.projects.find(project => (project.name == projectName))
         return currProject
     }
 
-    static addProject(projectName, todoList){
+    static addProject(projectName){
+        let todoList = Storage.getProjects()
         todoList.addProject(projectName)
+        
         Storage.saveProjects(todoList)
     }
 
-    static deleteProject(projectName, todoList){
+    static deleteProject(projectName){
+        let todoList = Storage.getProjects()
         todoList.deleteProject(projectName)
-        
+        Storage.saveProjects(todoList)
+    }
+
+    static deleteTask(projectName,taskId){
+        let todoList = Storage.getProjects()
+        todoList.deleteTask(projectName, taskId)
         Storage.saveProjects(todoList)
     }
 
@@ -36,20 +45,21 @@ export default class Storage{
     static getProjects(){
         let todoList = new TodoList()
         let projects = JSON.parse(localStorage.getItem("TodoList"))
-        console.log("everythign", projects.projects)
+        //console.log("everythign", projects.projects)
+        
         projects.projects.forEach(project => {
             //console.log("name", project.name)
             //console.log("tasks",project.tasks)
             todoList.fetchProject(project)
         });
-        console.log("after",todoList)
+        //console.log("after",todoList)
         todoList.setProjects(todoList.getProjects().map((project) => Object.assign(new Project(), project)))
-        console.log("after 2", todoList)
+        //console.log("after 2", todoList)
         
         todoList.getProjects().forEach(project => { project.setTasks(project.getTasks().map(task => Object.assign(new Task(), task)))
         })
         
-        console.log("after 3", todoList)
+        //console.log("after 3", todoList)
         return todoList
     }
 

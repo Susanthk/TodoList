@@ -25,7 +25,10 @@ export default class TodoList{
 
     addTask(projectName, task){
         let project = this.getProject(projectName)
-        project.addTask(task)
+        console.log("projectname", projectName)
+        console.log("adding to ", project)
+        let taskLength = project.tasks.length
+        project.addTask(new Task(taskLength,task))
         //console.log("PROJECT",project)
         //Project.addTask(new Task(task))
     }
@@ -44,15 +47,41 @@ export default class TodoList{
         return curr
     }
 
-    deleteProject(projectName){
-        //let projects = Project.getProjects()
-        //console.log(projects)
-        let projects = this.projects.find(project => project.name == projectName)
-        console.log("Delete",projects)
-        //console.log("after Deleting", projects)
-        //this.setProjects(this.projects.filter(project => project.name != projectName))
+    findProjectIndex(projectName){
+        let index = 0
+        for (let i = 0; i < this.projects.length; i++)
+        {
+            if (this.projects[i].name == projectName){
+                return index
+            }
+            index++
+        }
+        return -1; 
     }
 
+    findTaskIndex(projectIndex, taskId){
+        let index = 0
+        let tasks = this.projects[projectIndex].tasks
+        for(let i = 0; i < tasks.length; i++){
+            
+            if (tasks[i].id == taskId){
+                return index
+            }
+            index++
+        }
+        return -1
+    }
+    deleteProject(projectName){
+        let deleteIndex = this.findProjectIndex(projectName)
+        this.projects.splice(deleteIndex,1)
+    }
+
+    deleteTask(projectName, taskId){
+        let projectIndex = this.findProjectIndex(projectName)
+        let taskIndex = this.findTaskIndex(projectIndex, taskId)
+        this.projects[projectIndex].tasks.splice(taskIndex,1)
+        //console.log(this.projects[projectIndex].tasks[taskId])
+    }
 
 
 }
