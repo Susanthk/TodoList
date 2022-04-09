@@ -281,8 +281,10 @@ export default class UI {
         } 
     }
     static deleteProject(project){
-        let taskWindow = document.querySelector("#taskWindow")
-        //UI.clearDiv(taskWindow)
+        let taskDisplay = document.querySelector("#taskDisplay")
+        
+        
+        
         Storage.deleteProject(project)
         UI.createUserProjectWindow()
     }
