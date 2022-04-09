@@ -20,6 +20,7 @@ export default class UI {
         }
         //UI.setUpProjects()
         UI.createStaticElements()
+       
         UI.createStandardProjectWindow()
         UI.createUserProjectWindow()
         
@@ -39,6 +40,7 @@ export default class UI {
     static createStaticElements(){
         content.appendChild(UI.createHeader())
         content.appendChild(UI.createContentWindow())
+        
     }
 
 
@@ -52,7 +54,7 @@ export default class UI {
         //TaskWindow
         
         let taskWindow = UI.createTaskWindow()
-
+        
         contentWindow.appendChild(projectWindow)
         contentWindow.appendChild(taskWindow)
 
